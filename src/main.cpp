@@ -1,8 +1,9 @@
-#include "Core/GameEngine.h" 
+#include "../include/Core/GameEngine.h" 
 #include <iostream> 
 #include <cstdlib> 
 #include <ctime> 
 #include <windows.h>
+#include<iostream>
 
 int main(int argc, char* argv[]) {
     SetConsoleOutputCP(CP_UTF8); 
