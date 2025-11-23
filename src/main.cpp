@@ -1,4 +1,9 @@
 #include "../include/Core/GameEngine.h" 
+#include "../include/Graphics/Window.h"
+#include "../include/Core/Ecosystem.h" 
+#include "../include/Core/Structs.h"   
+#include <iostream>
+#include <SDL3/SDL.h>
 #include <iostream> 
 #include <cstdlib> 
 #include <ctime> 
