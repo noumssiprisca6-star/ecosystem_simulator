@@ -30,7 +30,7 @@ namespace Ecosystem {
             for (int i = 0; i < initialCarnivores; ++i) {
                 SpawnRandomEntity(EntityType::CARNIVORE);
             }
-
+                 
             for (int i = 0; i < initialPlants; ++i) {
                 SpawnRandomEntity(EntityType::PLANT);
             }
