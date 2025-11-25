@@ -12,6 +12,7 @@ namespace Ecosystem {
             HERBIVORE,
             CARNIVORE,
             PLANT,
+            FOOD,
         };
         class Entity {
             private:
@@ -19,6 +20,7 @@ namespace Ecosystem {
             float mEnergy;
             float mMaxEnergy;
             int mAge;
+            int maxspeed;
             int mMaxAge;
             bool mIsAlive;
             Vector2D mVelocity;
@@ -28,7 +30,7 @@ namespace Ecosystem {
             mutable std::mt19937 mRandomGenerator;
             public:
             // 🔓 DONNÉES PUBLIQUES - Accès direct sécurisé
-            Vector2D position;
+            Vector2D position; //position actuelle
             Color color;
             float size;
             std::string name;

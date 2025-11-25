@@ -15,6 +15,7 @@ namespace Ecosystem {
                     mEnergy = 80.0f;
                     mMaxEnergy = 150.0f;
                     mMaxAge = 200;
+                    maxspeed=1.5f;
                     color = Color::Blue();
                     size = 8.0f;
                 break;
@@ -23,6 +24,7 @@ namespace Ecosystem {
                     mEnergy = 100.0f;
                     mMaxEnergy = 200.0f;
                     mMaxAge = 150;
+                    maxspeed =2.0f;
                     color = Color::Red();
                     size = 12.0f;
                 break;
@@ -31,6 +33,7 @@ namespace Ecosystem {
                     mEnergy = 50.0f;
                     mMaxEnergy = 100.0f;
                     mMaxAge = 300;
+                    maxspeed=0.0f;
                     color = Color::Green();
                     size = 6.0f;
                 break;
@@ -56,7 +59,9 @@ namespace Ecosystem {
         mRandomGenerator(std::random_device{}())
         {
             std::cout << "👶 Copie d'entité créée: " << name << std::endl;
+            
         }
+        
         // DESTRUCTEUR
         Entity::~Entity() {
             std::cout << "💀 Entité détruite: " << name << " (Âge: " << mAge << ")" << std::endl;
@@ -192,6 +197,28 @@ namespace Ecosystem {
             SDL_RenderFillRect(renderer, &energyBar);
             }
         }
-    } // namespace Core
+        //implementation de la fonction StayInBounds
+       Vector2D Entity::StayInBounds(float worldWidth, float worldHeight) const {
+        Vector2D force (0.0f , 0.0f);
+        Vector2D pos= position ;
+        const float marge =8.0f;//distance avant de corriger la trajectoire 
+          // pour les herbivores 
+            if(pos.x<marge){
+            pos.x=marge;
+            }else if (pos.x>worldWidth - marge ){ 
+            pos.x=-(marge);
+            if(pos.y<marge){
+            pos.y=marge;
+            if(pos.y >worldHeight - marge ){
+            pos.y=-(marge);
+            }
+            }
+
+            }
+              return pos;
+       }
+     
+        
+} // namespace Core
 } // namespace Ecosystem
 
