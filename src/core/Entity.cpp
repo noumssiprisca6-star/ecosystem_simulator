@@ -85,7 +85,7 @@ namespace Ecosystem {
             if (chance(mRandomGenerator) < 0.02f) {
                 mVelocity = GenerateRandomDirection();
             }
-            
+           position = StayInBounds(1200.0f, 600.0f);
             // 📐 Application du mouvement
             position = position + mVelocity * deltaTime * 20.0f;
             
@@ -199,22 +199,25 @@ namespace Ecosystem {
         }
         //implementation de la fonction StayInBounds
        Vector2D Entity::StayInBounds(float worldWidth, float worldHeight) const {
-        Vector2D force (0.0f , 0.0f);
         Vector2D pos= position ;
-        const float marge =8.0f;//distance avant de corriger la trajectoire 
+        //distance avant de corriger la trajectoire 
           // pour les herbivores 
-            if(pos.x<marge){
-            pos.x=marge;
-            }else if (pos.x>worldWidth - marge ){ 
-            pos.x=-(marge);
-            if(pos.y<marge){
-            pos.y=marge;
-            if(pos.y >worldHeight - marge ){
-            pos.y=-(marge);
+            if(pos.x < 8.0f){
+            pos.x = 8.0f;
             }
+            if (pos.x > worldWidth - 8.0f ){ 
+            pos.x = worldWidth - 8.0f;
+        
             }
+            if(pos.y < 8.0f){
+                pos.y = 8.0f;
+            }
+            if(pos.y >worldHeight - 8.0f){
+                pos.y = worldHeight - 8.0f;
+            }
+            
 
-            }
+            
               return pos ;
        }
      
