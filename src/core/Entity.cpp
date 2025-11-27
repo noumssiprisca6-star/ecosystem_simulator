@@ -67,18 +67,23 @@ namespace Ecosystem {
             std::cout << "💀 Entité détruite: " << name << " (Âge: " << mAge << ")" << std::endl;
         }
         // ⚙️ MISE À JOUR PRINCIPALE
-        void Entity::Update(float deltaTime) {
+        void Entity::Update(float deltaTime, const std::vector<Food>& foodSources) {
             if (!mIsAlive) return;
             
             // 🔄 PROCESSUS DE VIE
             ConsumeEnergy(deltaTime);
             Age(deltaTime);
-            Move(deltaTime);
+            Move(deltaTime, foodSources);
             CheckVitality();
         }
         // 🚶 MOUVEMENT
-        void Entity::Move(float deltaTime) {
+        void Entity::Move(float deltaTime, const std::vector<Food>& foodSources) {
             if (mType == EntityType::PLANT) return; // Les plantes ne bougent pas
+            
+            if (mEnergy < 80.0f)
+            {
+                position = position + SeekFood(foodSources) * 0.025f;
+            }
             
             // 🎲 Comportement aléatoire occasionnel
             std::uniform_real_distribution<float> chance(0.0f, 1.0f);
@@ -220,7 +225,24 @@ namespace Ecosystem {
             
               return pos ;
        }
-     
+     Vector2D Entity::SeekFood(const std::vector<Food>& foodSources) const {
+        Vector2D posTemp = position; // initialisation d'une position temporaire
+        float distMin = posTemp.Distance(foodSources[0].position);
+        int count;
+        float distance;
+        for (int i = 0; i < foodSources.size(); i++)
+        {
+            distance = posTemp.Distance(foodSources[i].position);
+            if (distMin > distance)
+            {
+                distMin = distance;
+                count = i;
+            }
+        }
+        posTemp.x = foodSources[count].position.x - posTemp.x;
+        posTemp.y = foodSources[count].position.y - posTemp.y;
+        return posTemp;
+     }
         
 } // namespace Core
 } // namespace Ecosystem

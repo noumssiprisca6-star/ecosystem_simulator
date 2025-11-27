@@ -35,7 +35,7 @@ namespace Ecosystem {
             ~Ecosystem();
             // ⚙️ MÉTHODES PUBLIQUES
             void Initialize(int initialHerbivores, int initialCarnivores, int initialPlants);
-            void Update(float deltaTime);
+            void Update(float deltaTime, const std::vector<Food>& foodSources);
             void SpawnFood(int count);
             void RemoveDeadEntities();
             void HandleReproduction();
@@ -43,7 +43,7 @@ namespace Ecosystem {
             
             // 📊 GETTERS
             int GetEntityCount() const { return mEntities.size(); }
-            
+            std::vector<Food> GetFood() const { return mFoodSources;}
             int GetFoodCount() const { return mFoodSources.size(); }
             Statistics GetStatistics() const { return mStats; }
             float GetWorldWidth() const { return mWorldWidth; }

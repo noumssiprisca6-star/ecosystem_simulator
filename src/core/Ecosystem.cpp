@@ -41,10 +41,10 @@ namespace Ecosystem {
             std::cout << "🌱 Écosystème initialisé avec " << mEntities.size() << " entités" << std::endl;
         }
         // 🔄 MISE À JOUR
-        void Ecosystem::Update(float deltaTime) {
+        void Ecosystem::Update(float deltaTime, const std::vector<Food>& foodSources) {
             // Mise à jour de toutes les entités
             for (auto& entity : mEntities) {
-                entity->Update(deltaTime);
+                entity->Update(deltaTime, foodSources);
             }
             
             // Gestion des comportements

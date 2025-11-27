@@ -41,8 +41,8 @@ namespace Ecosystem {
             // DESTRUCTEUR
             ~Entity();
             // ⚙️ MÉTHODES PUBLIQUES
-            void Update(float deltaTime);
-            void Move(float deltaTime);
+            void Update(float deltaTime, const std::vector<Food>& foodSources);
+            void Move(float deltaTime, const std::vector<Food>& foodSources);
             void Eat(float energy);
             bool CanReproduce() const;
             std::unique_ptr<Entity> Reproduce();
