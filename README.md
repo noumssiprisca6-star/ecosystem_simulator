@@ -18,6 +18,7 @@ un simulateur d'écosysteme virtuel ou des entités se déplacent , cherchent de
 ## Restrictions 
 -il m'a fallu modifier les chemins d'acces dans chaque fichier afin de pouvoir observer l'affichage de la fenetre de l'ecosysteme apres la compilation reussit
 
+
 ## Installation 
 1.creer un document qui recevra le clonage de mon projet et mentionner son chemin d'acces dans l'invite de commande 
 
@@ -196,7 +197,61 @@ La vitesse et la position seront mises à jour ensuite
 
  ## ✨🎊 apercu graphique
  ![alt text](image-1.png)
-    
+
+
+  la fonction main.cpp
+  '''cpp
+#include "../include/Core/GameEngine.h" 
+#include "../include/Graphics/Window.h"
+#include "../include/Core/Ecosystem.h" 
+#include "../include/Core/Structs.h"   
+#include <iostream>
+#include <SDL3/SDL.h>
+#include <iostream> 
+#include <cstdlib> 
+#include <ctime> 
+#include <windows.h>
+#include<iostream>
+
+int main(int argc, char* argv[]) {
+    SetConsoleOutputCP(CP_UTF8); 
+    // Initialisation de l'aléatoire 
+    std::srand(static_cast<unsigned int>(std::time(nullptr))); 
+     
+    std::cout << "🎮Démarrage du Simulateur d'Écosystème" << std::endl; 
+    std::cout << "=======================================" << std::endl; 
+     
+    // 🏗 Création du moteur de jeu 
+    Ecosystem::Core::GameEngine engine("Simulateur d'Écosystème Intelligent", 1200.0f, 600.0f);
+     
+    // Initialisation 
+    if (!engine.Initialize()) { 
+        std::cerr << "❌Erreur: Impossible d'initialiser le moteur de jeu" << std::endl;
+        return -1; 
+    }
+     
+    std::cout << "✅Moteur initialisé avec succès" << std::endl; 
+    std::cout << "🎯Lancement de la simulation..." << std::endl; 
+    std::cout << "=== CONTRÔLES ===" << std::endl; 
+    std::cout << "ESPACE: Pause/Reprise" << std::endl; 
+    std::cout << "R: Reset simulation" << std::endl; 
+    std::cout << "F: Ajouter nourriture" << std::endl; 
+    std::cout << "FLÈCHES: Vitesse simulation" << std::endl; 
+    std::cout << "ÉCHAP: Quitter" << std::endl; 
+     
+    // Boucle principale 
+    engine.Run(); 
+     
+    // Arrêt propre 
+    engine.Shutdown(); 
+     
+    std::cout << "👋Simulation terminée. Au revoir !" << std::endl; 
+    return 0;
+}
+ 
+ #REMARQUES 
+ Cette exercice est un excellent moyen de rassembler les notions abordées jusqu'ici concernant les fonctions , les procedures et mettre en exergue le fameux SDL3 ❤❤
+  l'execution de ces fichiers en passant par le main.cpp est extremement beau . MERCI pour cet exercice etant un moyen de travail intellectuel et de divertissement visuel   
 
      ## REALISATEUR :
      -NOM : NOUMMSI TIATSAP 
