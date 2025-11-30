@@ -38,7 +38,7 @@ namespace Ecosystem {
                     size = 6.0f;
                 break;
             }
-            
+            const float dangerDist = 30.0f;
             mAge = 0;
             mIsAlive = true;
             mVelocity = GenerateRandomDirection();
@@ -90,12 +90,14 @@ namespace Ecosystem {
             if (chance(mRandomGenerator) < 0.02f) {
                 mVelocity = GenerateRandomDirection();
             }
+
            position = StayInBounds(1200.0f, 600.0f);
             // 📐 Application du mouvement
             position = position + mVelocity * deltaTime * 20.0f;
             
             // 🔄 Consommation d'énergie due au mouvement
             mEnergy -= mVelocity.Distance(Vector2D(0, 0)) * deltaTime * 0.1f;
+            
         }
         // MANGER
         void Entity::Eat(float energy) {
@@ -206,13 +208,13 @@ namespace Ecosystem {
        Vector2D Entity::StayInBounds(float worldWidth, float worldHeight) const {
         Vector2D pos= position ;
         //distance avant de corriger la trajectoire 
-          // pour les herbivores 
+          // pour les herbivores et les carnivores , les plantes sont statiques 
             if(pos.x < 8.0f){
             pos.x = 8.0f;
             }
             if (pos.x > worldWidth - 8.0f ){ 
             pos.x = worldWidth - 8.0f;
-        
+        // je cherche à ramener l'entité dans le cadre  chaque fois qu'il essaira de s'en eloigner ils doivent rester dans l'enclos
             }
             if(pos.y < 8.0f){
                 pos.y = 8.0f;
@@ -225,6 +227,7 @@ namespace Ecosystem {
             
               return pos ;
        }
+       //implementation de la fonction SeeKFood 
      Vector2D Entity::SeekFood(const std::vector<Food>& foodSources) const {
         Vector2D posTemp = position; // initialisation d'une position temporaire
         float distMin = posTemp.Distance(foodSources[0].position);
@@ -232,6 +235,7 @@ namespace Ecosystem {
         float distance;
         for (int i = 0; i < foodSources.size(); i++)
         {
+            //afin que nos entités suivent la nourritures situés à la plus petiite distance de leur coordonnées 
             distance = posTemp.Distance(foodSources[i].position);
             if (distMin > distance)
             {
@@ -243,7 +247,8 @@ namespace Ecosystem {
         posTemp.y = foodSources[count].position.y - posTemp.y;
         return posTemp;
      }
-        
+    
+
 } // namespace Core
 } // namespace Ecosystem
 

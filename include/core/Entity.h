@@ -23,6 +23,9 @@ namespace Ecosystem {
             int maxspeed;
             int mMaxAge;
             bool mIsAlive;
+            float fx ;
+            float fy;
+            float dangerDist;
             Vector2D mVelocity;
             EntityType mType;
             
