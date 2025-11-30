@@ -1,1 +1,199 @@
+#  VIRTUEL ECOSYSTEM SIMULATOR
+
+## DESCRIPTION  
+un simulateur d'écosysteme virtuel ou des entités se déplacent , cherchent de la nourriture , se reproduisent et fuient les predateurs et interagissent entres elles 
+
+## 🌹 Fonctionalités 
+-Deplacemeent autonome des entités 
+-Systeme de nourriture et de prédateurs 
+-Physique simple ( forces , vitesse , limites )
+-Interface graphique avec SDL3
+
+## Installation 
+1.creer un document qui recevra le clonage de mon projet et mentionner son chemin d'acces dans l'invite de commande 
+
+2.Cloner le projet :
+'''bash
+git clone le nom de mon repository  et juste avant github le nom de mon  tokens 
+et ensuite le clonage est lancer . 
+pour la compilation c'est g++ -std=c++17 -Include -o ecosystem src/*.cpp src/Core/*.cpp src/Graphics/*.cpp -o ecosysteme.exe -lSDL3 
+
+## 🎇Utilisation 
+lancez : ./ECOSYSTEM
+Pour l'execution 
+
+## 📒Architecture du projet
+� Structure des Fichiers
+ecosystem_simulator/
+├── include/
+│ ├── Core/
+│ │ ├── Structs. hpp
+│ │ ├── Entity. hpp
+│ │ └── Ecosystem. hpp
+│ └── Graphics/
+│ ├── Window. hpp
+│ └── Renderer. hpp
+├── src/
+│ ├── Core/
+│ │ ├── Entity. cpp
+│ │ └── Ecosystem. cpp
+│ ├── Graphics/
+│ │ ├── Window. cpp
+│ │ └── Renderer. cpp
+│ └── main. cpp
+├── assets/
+│ └── ( futures textures)
+└── README. md
+
+un apercu de quelques  lignes de code du fichier entity.h
+
+## implementations importantes
+
+            
+            // 🎯 MÉTHODES DE COMPORTEMENT
+            Vector2D SeekFood(const std::vector<Food>& foodSources) const;
+            Vector2D AvoidPredators(const std::vector<Entity>& predators) const;
+            Vector2D StayInBounds(float worldWidth, float worldHeight) const;
+            
+        s
+  
+  les fonctions  à implémenter dans entity.cpp 
+  - Vector2D SeekFodd () const 
+  -Vector2D AvoidPredators()const
+  -Vector2D StayInBouds() const
+  -Vector2D  apllyForce() 
+
+  les fonctions à implementer dans Ecosystem .h
+  - Void addentity()
+  -void addFood()
+
+ ## 🎀Explication
+
+
+🧠 1. seekFood() — Chercher la nourriture
+
+📌 But :
+
+Calculer la direction dans laquelle l’entité doit se déplacer pour aller vers la nourriture la plus proche.
+
+📘 Ce que fait la fonction :
+
+Parcourt toutes les sources de nourriture
+
+Trouve la plus proche
+
+Calcule un vecteur directionnel :
+direction = position_nourriture - position_entité
+
+Retourne ce vecteur (à normaliser selon ton code)
+
+
+🎯 Pourquoi c’est utile :
+
+Sans cette fonction, l’entité ne saurait pas où aller.
+C’est son comportement “chercher de la nourriture”.
+
+
+---
+
+🧱 2. stayInBounds() — Rester dans les limites
+
+📌 But :
+
+Empêcher les entités de sortir de l’écran / fenêtre.
+
+📘 Ce que fait la fonction :
+
+Vérifie si l’entité approche des bords (x < 0, x > largeur, y < 0, y > hauteur)
+
+Si oui, elle renvoie une force opposée pour la ramener à l’intérieur
+
+
+🎯 Pourquoi c’est utile :
+
+Sans ça, tes entités sortiraient de la fenêtre et disparaîtraient.
+
+
+---
+
+🦊 3. avoidPredators() — Éviter les prédateurs
+
+📌 But :
+
+Faire fuir l’entité lorsqu’un prédateur s’approche.
+
+📘 Ce que fait la fonction :
+
+Parcourt les prédateurs
+
+Trouve s’ils sont trop proches
+
+Calcule une force de fuite :
+fuite = position_entité - position_predateur
+
+Retourne un vecteur de “répulsion”
+
+
+🎯 Pourquoi c’est utile :
+
+Permet aux entités d'avoir un comportement biologique crédible : se sauver.
+
+
+---
+
+➕ 4. addEntity() — Ajouter une entité dans l’écosystème
+
+📌 But :
+
+Ajouter dynamiquement une nouvelle entité dans la simulation.
+
+📘 Ce que fait la fonction :
+
+Crée une nouvelle entité
+
+L’ajoute dans le std::vector<Entity> de l’écosystème
+
+Peut lui donner une position aléatoire ou définie
+
+
+🎯 Pourquoi c’est utile :
+
+Pour générer plusieurs entités au début
+
+Pour ajouter de nouveaux agents pendant la simulation
+
+Pour garder un système flexible
+
+
+
+---
+
+⚙ 5. applyForce() — Appliquer une force à une entité
+
+📌 But :
+
+Modifier son mouvement en ajoutant une force à son accélération.
+
+📘 Ce que fait la fonction :
+
+Reçoit un vecteur force
+
+Ajoute cette force à l’accélération de l’entité :
+acceleration += force
+
+La vitesse et la position seront mises à jour ensuite
+
+ ## ✨🎊 apercu graphique
+ ![alt text](image-1.png)
+    
+
+     ## REALISATEUR :
+     -NOM : NOUMMSI TIATSAP 
+     -PRENOM : VANESSA  PRISCA
+     -FILIERE : ART NUMERIQUE ING
+           - PROPOSE PAR : M. TEGUIA 
+           #   🌹❤ GAME PROGRAMMING 
+           -MERCI POUR VOTRE ATTENTION , A UNE PROCHAINE POUR UNE AVENTURE NOUVELLE 🎊✨
+
+
 
