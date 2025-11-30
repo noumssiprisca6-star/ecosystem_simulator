@@ -254,7 +254,7 @@ int main(int argc, char* argv[]) {
     }
 
  
- # REMARQUES 
+ # Remarques
 - Cette exercice est un excellent moyen de rassembler les notions abordées jusqu'ici concernant les fonctions , les procedures et mettre en exergue le fameux SDL3 ❤❤
 -  l'execution de ces fichiers en passant par le main.cpp est extremement beau . MERCI pour cet exercice etant un moyen de travail intellectuel et de divertissement visuel   
 
