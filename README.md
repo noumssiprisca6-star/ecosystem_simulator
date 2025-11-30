@@ -8,6 +8,7 @@ un simulateur d'écosysteme virtuel ou des entités se déplacent , cherchent de
 
 
 ## 🌹 Fonctionalités 
+
 -Deplacemeent autonome des entités 
 -Systeme de nourriture et de prédateurs 
 -Physique simple ( forces , vitesse , limites )
@@ -16,13 +17,16 @@ un simulateur d'écosysteme virtuel ou des entités se déplacent , cherchent de
 
 
 ## Restrictions 
+
 -il m'a fallu modifier les chemins d'acces dans chaque fichier afin de pouvoir observer l'affichage de la fenetre de l'ecosysteme apres la compilation reussit
 
 
 ## Installation 
+
 1.creer un document qui recevra le clonage de mon projet et mentionner son chemin d'acces dans l'invite de commande 
 
 2.Cloner le projet :
+
 '''bash
 git clone le nom de mon repository  et juste avant github le nom de mon  tokens 
 et ensuite le clonage est lancer . 
@@ -199,7 +203,7 @@ La vitesse et la position seront mises à jour ensuite
  ![alt text](image-1.png)
 
 
-  la fonction main.cpp
+ - la fonction main.cpp
   '''cpp
 #include "../include/Core/GameEngine.h" 
 #include "../include/Graphics/Window.h"
@@ -247,11 +251,12 @@ int main(int argc, char* argv[]) {
      
     std::cout << "👋Simulation terminée. Au revoir !" << std::endl; 
     return 0;
-}
+    }
+
  
- #REMARQUES 
- Cette exercice est un excellent moyen de rassembler les notions abordées jusqu'ici concernant les fonctions , les procedures et mettre en exergue le fameux SDL3 ❤❤
-  l'execution de ces fichiers en passant par le main.cpp est extremement beau . MERCI pour cet exercice etant un moyen de travail intellectuel et de divertissement visuel   
+ # REMARQUES 
+- Cette exercice est un excellent moyen de rassembler les notions abordées jusqu'ici concernant les fonctions , les procedures et mettre en exergue le fameux SDL3 ❤❤
+-  l'execution de ces fichiers en passant par le main.cpp est extremement beau . MERCI pour cet exercice etant un moyen de travail intellectuel et de divertissement visuel   
 
      ## REALISATEUR :
      -NOM : NOUMMSI TIATSAP 
