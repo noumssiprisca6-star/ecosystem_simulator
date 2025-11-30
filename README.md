@@ -15,6 +15,9 @@ un simulateur d'écosysteme virtuel ou des entités se déplacent , cherchent de
 
 
 
+## Restrictions 
+-il m'a fallu modifier les chemins d'acces dans chaque fichier afin de pouvoir observer l'affichage de la fenetre de l'ecosysteme apres la compilation reussit
+
 ## Installation 
 1.creer un document qui recevra le clonage de mon projet et mentionner son chemin d'acces dans l'invite de commande 
 
