@@ -1,13 +1,19 @@
 #  VIRTUEL ECOSYSTEM SIMULATOR
 
+
+
 ## DESCRIPTION  
 un simulateur d'écosysteme virtuel ou des entités se déplacent , cherchent de la nourriture , se reproduisent et fuient les predateurs et interagissent entres elles 
+
+
 
 ## 🌹 Fonctionalités 
 -Deplacemeent autonome des entités 
 -Systeme de nourriture et de prédateurs 
 -Physique simple ( forces , vitesse , limites )
 -Interface graphique avec SDL3
+
+
 
 ## Installation 
 1.creer un document qui recevra le clonage de mon projet et mentionner son chemin d'acces dans l'invite de commande 
@@ -18,9 +24,12 @@ git clone le nom de mon repository  et juste avant github le nom de mon  tokens
 et ensuite le clonage est lancer . 
 pour la compilation c'est g++ -std=c++17 -Include -o ecosystem src/*.cpp src/Core/*.cpp src/Graphics/*.cpp -o ecosysteme.exe -lSDL3 
 
+
+
 ## 🎇Utilisation 
 lancez : ./ECOSYSTEM
 Pour l'execution 
+
 
 ## 📒Architecture du projet
 � Structure des Fichiers
@@ -166,7 +175,6 @@ Pour garder un système flexible
 
 
 
----
 
 ⚙ 5. applyForce() — Appliquer une force à une entité
 
