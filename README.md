@@ -40,6 +40,7 @@ Pour l'execution
 
 
 ## 📒Architecture du projet
+```
 � Structure des Fichiers
 ecosystem_simulator/
 ├── include/
@@ -61,6 +62,7 @@ ecosystem_simulator/
 ├── assets/
 │ └── ( futures textures)
 └── README. md
+```
 
 un apercu de quelques  lignes de code du fichier entity.h
 
