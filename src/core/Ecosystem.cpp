@@ -41,10 +41,10 @@ namespace Ecosystem {
             std::cout << "🌱 Écosystème initialisé avec " << mEntities.size() << " entités" << std::endl;
         }
         // 🔄 MISE À JOUR
-        void Ecosystem::Update(float deltaTime, const std::vector<Food>& foodSources) {
+        void Ecosystem::Update(float deltaTime) {
             // Mise à jour de toutes les entités
             for (auto& entity : mEntities) {
-                entity->Update(deltaTime, foodSources);
+                entity->Update(deltaTime);
             }
             
             // Gestion des comportements
@@ -110,6 +110,13 @@ namespace Ecosystem {
                 if (entity->GetType() == EntityType::PLANT) {
                     // Les plantes génèrent de l'énergie
                     entity->Eat(0.1f);
+                }
+                //appliquer la logique de recherche de nourriture pour les herbivores
+                if(entity->GetType() == EntityType::HERBIVORE){
+                    if(entity->GetEnergy() <  70.0f){
+                        entity->ApplyForce(entity->SeekFood(mFoodSources));
+                        entity->position = entity->position + entity->GetVelocity();
+                    }
                 }
             }
         }

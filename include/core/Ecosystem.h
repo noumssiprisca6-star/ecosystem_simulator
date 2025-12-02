@@ -3,6 +3,7 @@
 #include "Structs.h"
 #include <vector>
 #include <memory>
+#include<cmath>
 #include <SDL3/SDL.h>
 #include <random>
 namespace Ecosystem {
@@ -35,7 +36,7 @@ namespace Ecosystem {
             ~Ecosystem();
             // ⚙️ MÉTHODES PUBLIQUES
             void Initialize(int initialHerbivores, int initialCarnivores, int initialPlants);
-            void Update(float deltaTime, const std::vector<Food>& foodSources);
+            void Update(float deltaTime);
             void SpawnFood(int count);
             void RemoveDeadEntities();
             void HandleReproduction();

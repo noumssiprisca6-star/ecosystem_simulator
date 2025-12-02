@@ -45,8 +45,8 @@ namespace Ecosystem {
             // DESTRUCTEUR
             ~Entity();
             // ⚙️ MÉTHODES PUBLIQUES
-            void Update(float deltaTime, const std::vector<Food>& foodSources);
-            void Move(float deltaTime, const std::vector<Food>& foodSources);
+            void Update(float deltaTime);
+            void Move(float deltaTime);
             void Eat(float energy);
             bool CanReproduce() const;
             std::unique_ptr<Entity> Reproduce();
@@ -62,6 +62,7 @@ namespace Ecosystem {
             
             // 🎯 MÉTHODES DE COMPORTEMENT
             Vector2D SeekFood(const std::vector<Food>& foodSources) const;
+            Vector2D SeekFood(const std::vector<std::unique_ptr<Entity>>& EntityFood) const;
             Vector2D AvoidPredators(const std::vector<Entity>& predators) const;
             Vector2D StayInBounds(float worldWidth, float worldHeight) const;
             

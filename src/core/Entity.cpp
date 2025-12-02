@@ -68,17 +68,17 @@ namespace Ecosystem {
             std::cout << "💀 Entité détruite: " << name << " (Âge: " << mAge << ")" << std::endl;
         }
         // ⚙️ MISE À JOUR PRINCIPALE
-        void Entity::Update(float deltaTime, const std::vector<Food>& foodSources) {
+        void Entity::Update(float deltaTime) {
             if (!mIsAlive) return;
             
             // 🔄 PROCESSUS DE VIE
             ConsumeEnergy(deltaTime);
             Age(deltaTime);
-            Move(deltaTime, foodSources);
+            Move(deltaTime);
             CheckVitality();
         }
         // 🚶 MOUVEMENT
-        void Entity::Move(float deltaTime, const std::vector<Food>& foodSources) {
+        void Entity::Move(float deltaTime) {
             if (mType == EntityType::PLANT) return; // Les plantes ne bougent pas
             
             // 🎲 Comportement aléatoire occasionnel
@@ -228,6 +228,7 @@ namespace Ecosystem {
         Vector2D herbipos = position; // initialisation d'une position temporaire
         float distMin = 6000.0f;
         float distance;
+        float energyh;
         Vector2D foodPos; //stocke la position de la nourriture la plus proche
         for(auto& food : foodSources) {
             distance = herbipos.Distance(food.position);
@@ -244,7 +245,39 @@ namespace Ecosystem {
        herbipos.y /= length;
         return herbipos;
      }
-    
+
+     Vector2D Entity::SeekFood(const std::vector<std::unique_ptr<Entity>>& EntityFood) const {
+        Vector2D predatpos = position ;
+        float distance;
+        float distMinim = 7000.0f;
+        Vector2D herbipos ;
+        for(auto& foodp : EntityFood){
+            if(foodp->GetType() == EntityType::HERBIVORE){
+                distance = predatpos.Distance(foodp->position);
+             if(distMinim > distance && distance < 450.0f  ){
+                    distMinim = distance ;
+                    herbipos = foodp->position;
+                }
+
+            }
+            
+        }
+        //normalisation du vecteurs 
+        predatpos.x = herbipos.x - predatpos.x ;
+        predatpos.y =  herbipos.y -  predatpos.y ;
+        float length = sqrt(predatpos.x*predatpos.x  +  predatpos.y*predatpos.y);
+        predatpos.x /= length ;
+        predatpos.y /= length;
+         return predatpos;
+      }
+
+     void Entity::ApplyForce(Vector2D force) {
+        mVelocity = mVelocity + force ;
+        //normalisation du vecteur 
+        float length = sqrt(mVelocity.x*mVelocity.x + mVelocity.y*mVelocity.y);
+        mVelocity.x /=length;
+        mVelocity.y /=length;
+     }
 
 } // namespace Core
 } // namespace Ecosystem
