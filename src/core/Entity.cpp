@@ -281,6 +281,7 @@ namespace Ecosystem {
     
      void Entity::Skill(){
         mEnergy = 0.0f ;
+        mAge = mMaxAge + 10;
      }
 } // namespace Core
 } // namespace Ecosystem

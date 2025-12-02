@@ -113,11 +113,20 @@ namespace Ecosystem {
                 }
                 //appliquer la logique de recherche de nourriture pour les herbivores
                 if(entity->GetType() == EntityType::HERBIVORE){
-                    if(entity->GetEnergy() <  70.0f){
+                    if(entity->GetEnergy() <  70.0f) {
                         entity->ApplyForce(entity->SeekFood(mFoodSources));
                         entity->position = entity->position + entity->GetVelocity();
                     }
-                    for(auto& food : mFoodSources){
+                    for (auto& plant : mEntities) {
+                        if (plant->GetType() == EntityType::PLANT) {
+                            float distance = entity->position.Distance(plant->position);
+                            if (distance < 4.0f) {
+                                entity->Eat(35.0f);
+                                plant->Skill();
+                            }
+                        }
+                    }
+                    for(auto& food : mFoodSources) {
                         float distance = entity->position.Distance(food.position);
                         if(distance < 4.0f){
                             entity->Eat(35.0f);
