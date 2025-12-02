@@ -5,6 +5,7 @@
 #include <memory>
 #include <random>
 #include <vector>
+#include <cmath>
 namespace Ecosystem {
     namespace Core {
         // 🎯 ÉNUMÉRATION DES TYPES D'ENTITÉS

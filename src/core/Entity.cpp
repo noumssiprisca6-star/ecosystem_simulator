@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 namespace Ecosystem {
     namespace Core {
         // CONSTRUCTEUR PRINCIPAL
@@ -224,12 +225,24 @@ namespace Ecosystem {
        }
        //implementation de la fonction SeeKFood 
      Vector2D Entity::SeekFood(const std::vector<Food>& foodSources) const {
-        Vector2D posTemp = position; // initialisation d'une position temporaire
+        Vector2D herbipos = position; // initialisation d'une position temporaire
         float distMin = 6000.0f;
-        int count;
         float distance;
-        
-        return posTemp;
+        Vector2D foodPos; //stocke la position de la nourriture la plus proche
+        for(auto& food : foodSources) {
+            distance = herbipos.Distance(food.position);
+            if(distMin > distance && distance < 300.0f) {
+                distMin = distance ;
+                foodPos = food.position;
+            }   
+        }
+        herbipos.x = foodPos.x - herbipos.x;
+        herbipos.y = foodPos.y - herbipos.y;
+      float length = sqrt(herbipos.x*herbipos.x + herbipos.y*herbipos.y); 
+      //normalisation du vecteur de la position des herbivores
+       herbipos.x /= length;
+       herbipos.y /= length;
+        return herbipos;
      }
     
 
