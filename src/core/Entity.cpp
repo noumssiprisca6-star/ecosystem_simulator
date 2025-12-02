@@ -80,11 +80,6 @@ namespace Ecosystem {
         void Entity::Move(float deltaTime, const std::vector<Food>& foodSources) {
             if (mType == EntityType::PLANT) return; // Les plantes ne bougent pas
             
-            if (mEnergy < 80.0f)
-            {
-                position = position + SeekFood(foodSources) * 0.025f;
-            }
-            
             // 🎲 Comportement aléatoire occasionnel
             std::uniform_real_distribution<float> chance(0.0f, 1.0f);
             if (chance(mRandomGenerator) < 0.02f) {
@@ -230,21 +225,10 @@ namespace Ecosystem {
        //implementation de la fonction SeeKFood 
      Vector2D Entity::SeekFood(const std::vector<Food>& foodSources) const {
         Vector2D posTemp = position; // initialisation d'une position temporaire
-        float distMin = posTemp.Distance(foodSources[0].position);
+        float distMin = 6000.0f;
         int count;
         float distance;
-        for (int i = 0; i < foodSources.size(); i++)
-        {
-            //afin que nos entités suivent la nourritures situés à la plus petiite distance de leur coordonnées 
-            distance = posTemp.Distance(foodSources[i].position);
-            if (distMin > distance)
-            {
-                distMin = distance;
-                count = i;
-            }
-        }
-        posTemp.x = foodSources[count].position.x - posTemp.x;
-        posTemp.y = foodSources[count].position.y - posTemp.y;
+        
         return posTemp;
      }
     
