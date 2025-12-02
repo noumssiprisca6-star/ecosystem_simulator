@@ -117,8 +117,31 @@ namespace Ecosystem {
                         entity->ApplyForce(entity->SeekFood(mFoodSources));
                         entity->position = entity->position + entity->GetVelocity();
                     }
+                    for(auto& food : mFoodSources){
+                        float distance = entity->position.Distance(food.position);
+                        if(distance < 4.0f){
+                            entity->Eat(35.0f);
+                        }
+                    }
+                }
+                if(entity->GetType() == EntityType::CARNIVORE){
+                    if(entity->GetEnergy() < 80.0f){
+                        entity->ApplyForce(entity->SeekFood(mEntities));
+                        entity->position =entity->position + entity->GetVelocity();
+
+                    }
+                    for(auto& foodh : mEntities){
+                        if(foodh->GetType() == EntityType::HERBIVORE){
+                            float distance = entity->position.Distance(foodh->position);
+                            if(distance <= 6.0f){
+                              entity->Eat(foodh->GetEnergy());
+                              foodh->Skill();
+                            }
+                        }
+                    }
                 }
             }
+
         }
         // 📊 MISE À JOUR DES STATISTIQUES
         void Ecosystem::UpdateStatistics() {

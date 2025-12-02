@@ -65,7 +65,7 @@ namespace Ecosystem {
             Vector2D SeekFood(const std::vector<std::unique_ptr<Entity>>& EntityFood) const;
             Vector2D AvoidPredators(const std::vector<Entity>& predators) const;
             Vector2D StayInBounds(float worldWidth, float worldHeight) const;
-            
+            void Skill();
             // 🎨 MÉTHODE DE RENDU
             void Render(SDL_Renderer* renderer) const;
             private:

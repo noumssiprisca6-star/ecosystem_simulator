@@ -278,7 +278,10 @@ namespace Ecosystem {
         mVelocity.x /=length;
         mVelocity.y /=length;
      }
-
+    
+     void Entity::Skill(){
+        mEnergy = 0.0f ;
+     }
 } // namespace Core
 } // namespace Ecosystem
 
